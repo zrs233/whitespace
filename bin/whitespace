@@ -6,7 +6,7 @@
 # Also:
 # - converts tabs to spaces
 # - ensures a single newline at the end
-FILE_TYPES = "rb|js|haml|html|css|sass|coffee|m|h"
+FILE_TYPES = "(.rb|.js|.haml|.html|.css|.sass|.coffee)$"
 
 class WhitespaceProcessor
   def self.process(code)
@@ -40,7 +40,7 @@ else
   files = `git status | egrep "#{regex}"`.split("\n").select { |file| file =~ /^#\t(modified|new file|renamed):/ }
   puts "* Stripping whitespace from modified files."
 end
-
+puts "before files.each do"
 files.each do |line|
   line = line.split(":").last.strip
   puts "  processing #{line}..."
